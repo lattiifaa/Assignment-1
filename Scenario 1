@@ -1,0 +1,124 @@
+#Customer Class
+class Customer:
+    """Represents the class customer"""
+
+    def __init__(self, customer_id, name, email, phone_number):
+        self.customer_id = customer_id
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+
+    def check_availability(self):
+        #Check availability for the customer
+        return f"Checking availability for customer {self.customer_id}."
+
+    def make_booking(self):
+        #Make a booking for the customer
+        return f"Booking made by customer {self.customer_id}."
+
+    def make_payment(self):
+        #Make payment for booking
+        return 150.0
+
+    def get_confirmation(self):
+        #Send the booking confirmation to the customer through email
+        return f"Booking confirmation sent to {self.email}."
+
+
+#Booking Class
+class Booking:
+    """Represents the class booking"""
+
+    def __init__(self, booking_id, customer_id, booking_date, booking_status):
+        self.booking_id = booking_id
+        self.customer_id = customer_id
+        self.booking_date = booking_date
+        self.booking_status = booking_status
+
+    def update_booking(self):
+        #Update the booking status to "Updated"
+        self.booking_status = "Updated"
+        return True
+
+    def cancel_booking(self):
+        #Cancel the booking by changing the status to "Cancelled"
+        self.booking_status = "Cancelled"
+        return True
+
+
+#Payment Class
+class Payment:
+    """Represents the class payment"""
+
+    def __init__(self, payment_id, booking_id, total_amount, payment_status):
+        self.payment_id = payment_id
+        self.booking_id = booking_id
+        self.total_amount = total_amount
+        self.payment_status = payment_status
+
+    def process_payment(self):
+        #Process the payment and change the status to "Processed"
+        self.payment_status = "Processed"
+        return True
+
+    def verify_payment(self):
+        #Verify if the payment status is "Processed"
+        return self.payment_status == "Processed"
+
+
+#Availability Class
+class Availability:
+    """Represents the class availability"""
+
+    def __init__(self, availability_status, start_date, end_date):
+        self.availability_status = availability_status
+        self.start_date = start_date
+        self.end_date = end_date
+
+    def check_availability(self):
+        #Check and return availability status
+        return "Availability status from {self.start_date} to {self.end_date}: {self.availability_status}"
+
+    def update_availability(self):
+        #Update the availability status to "Updated"
+        self.availability_status = "Updated"
+        return True
+
+
+#Test the classes
+def test_classes():
+    #Create a Customer
+    customer = Customer("Customer 1", "Hind Hamad", "hind.hamad@email.com", "1234567")
+    #Test customer booking process
+    print(customer.make_booking())
+    #Test customer payment process
+    print(customer.make_payment())
+    #Test customer receiving confirmation
+    print(customer.get_confirmation())
+
+    #Create a Booking
+    booking = Booking("Booking 123", "Customer 1", "21/09/2024", "Pending")
+    #Test updating booking status
+    print(booking.update_booking())
+    print(f"Booking Status: {booking.booking_status}")
+    #Test cancelling booking
+    print(booking.cancel_booking())
+    print(f"Booking Status: {booking.booking_status}")
+
+    #Create a Payment
+    payment = Payment("Payment 12", "Booking 123", 250.0, "Pending")
+    #Test processing payment
+    print(payment.process_payment())
+    #Test verifying payment status
+    print(f"Payment Verified: {payment.verify_payment()}")
+
+    #Create Availability
+    availability = Availability("Available", "20/09/2024", "30/09/2024")
+    #Test checking availability
+    print(availability.check_availability())
+    #Test updating availability status
+    print(availability.update_availability())
+    print(f"Availability Status: {availability.availability_status}")
+
+#Run the test
+test_classes()
