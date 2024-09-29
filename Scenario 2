@@ -1,0 +1,116 @@
+#Customer Class
+class Customer:
+    """Represents the customer class"""
+
+    def __init__(self, customer_id, name, email, phone_number):
+        self.customer_id = customer_id
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+
+    def request_upgrade(self):
+        #Customer requesting a room upgrade
+        return f"Customer {self.customer_id} requested a room upgrade."
+
+    def receive_confirmation(self):
+        #Customer receives a confirmation about the upgrade request
+        return True
+
+    def pay_online(self):
+        #Customer pays online for the room upgrade
+        return True
+
+
+#RoomUpgradeRequest Class
+class RoomUpgradeRequest:
+    """Represents the room upgrade request class"""
+
+    def __init__(self, request_id, customer_id, room_type, request_status):
+        self.request_id = request_id
+        self.customer_id = customer_id
+        self.room_type = room_type
+        self.request_status = request_status
+
+    def process_request(self):
+        #Processing the room upgrade request
+        self.request_status = "Processed"
+        return f"Room upgrade request {self.request_id} processed."
+
+    def update_status(self):
+        #Updating the status of the room upgrade request
+        self.request_status = "Updated"
+        return True
+
+
+#Payment Class
+class Payment:
+    """Represents the payment class"""
+
+    def __init__(self, payment_id, total_amount, payment_status):
+        self.payment_id = payment_id
+        self.total_amount = total_amount
+        self.payment_status = payment_status
+
+    def process_payment(self):
+        #Process the payment
+        self.payment_status = "Processed"
+        return True
+
+    def verify_payment(self):
+        #Verify if the payment has been successfully processed
+        return self.payment_status == "Processed"
+
+
+#Confirmation Class
+class Confirmation:
+    """Represents the confirmation class"""
+
+    def __init__(self, confirmation_id, request_id, status):
+        self.confirmation_id = confirmation_id
+        self.request_id = request_id
+        self.status = status
+
+    def final_confirmation(self):
+        #Final confirmation status
+        self.status = "Confirmed"
+        return True
+
+    def send_confirmation_to_customer(self):
+        #Send the confirmation to the customer
+        return True
+
+
+#Test the classes
+def test_classes():
+    #Create a Customer
+    customer = Customer("Customer 1", "Ali Saif", "ali.saif@email.com", "1122334455")
+    #Test customer requesting a room upgrade
+    print(customer.request_upgrade())
+    #Test customer receiving confirmation
+    print(f"Confirmation received: {customer.receive_confirmation()}")
+    #Test customer paying online
+    print(f"Payment successful: {customer.pay_online()}")
+
+    #Create a RoomUpgradeRequest
+    room_upgrade = RoomUpgradeRequest("Room 1", "Customer 1", "Deluxe", "Pending")
+    #Test processing the room upgrade request
+    print(room_upgrade.process_request())
+    #Test updating the request status
+    print(f"Status updated: {room_upgrade.update_status()}")
+
+    #Create a Payment
+    payment = Payment("Payment 11", 300.0, "Pending")
+    #Test processing the payment
+    print(f"Payment processed: {payment.process_payment()}")
+    #Test verifying the payment status
+    print(f"Payment verified: {payment.verify_payment()}")
+
+    #Create a Confirmation
+    confirmation = Confirmation("Confirmation 1", "Room 1", "Pending")
+    #Test generating the final confirmation
+    print(f"Final confirmation generated: {confirmation.final_confirmation()}")
+    #Test sending confirmation to the customer
+    print(f"Confirmation sent to customer: {confirmation.send_confirmation_to_customer()}")
+
+#Run the test
+test_classes()
