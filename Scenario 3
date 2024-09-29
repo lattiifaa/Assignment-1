@@ -1,0 +1,115 @@
+#Customer Class
+class Customer:
+    """Represents the class customer"""
+
+    def __init__(self, customer_id, name, email, phone_number):
+        self.customer_id = customer_id
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+
+    def enter_reference_number(self):
+        #Customer enters booking reference number
+        return True
+
+    def pay_cancellation_fee(self):
+        #Paying the cancellation fee
+        return True
+
+    def get_cancellation_invoice(self):
+        #Customer gets a cancellation invoice
+        return f"Cancellation invoice sent to {self.email}"
+
+
+#Reservation Class
+class Reservation:
+    """Represents the class reservation"""
+
+    def __init__(self, reservation_id, customer_id, reference_number, status):
+        self.reservation_id = reservation_id
+        self.customer_id = customer_id
+        self.reference_number = reference_number
+        self.status = status
+
+    def check_booking_reference(self):
+        #Check if the booking reference number is valid
+        return True
+
+    def update_status(self):
+        #Update the status of the reservation
+        self.status = "Canceled"
+        return True
+
+
+#Payment Class
+class Payment:
+    """Represents the class payment"""
+
+    def __init__(self, payment_id, total_amount, payment_status):
+        self.payment_id = payment_id
+        self.total_amount = total_amount
+        self.payment_status = payment_status
+
+    def process_payment(self):
+        #Process the payment
+        self.payment_status = "Processed"
+        return True
+
+    def verify_payment(self):
+        #Verify if the payment has been successfully processed
+        return self.payment_status == "Processed"
+
+
+#CancellationInvoice Class
+class CancellationInvoice:
+    """Represents the class cancellation invoice"""
+
+    def __init__(self, invoice, reservation, amount):
+        self.invoice = invoice
+        self.reservation = reservation
+        self.amount = amount
+
+    def generate_invoice(self):
+        #Generate the cancellation invoice
+        return f"Invoice for Reservation {self.reservation} with amount {self.amount} generated."
+
+    def send_confirmation_to_customer(self):
+        #Send the confirmation invoice to the customer
+        return True
+
+
+#Test the classes
+def test_classes():
+    #Create a Customer
+    customer = Customer("Customer 34", "Maryam Ahmed", "maryam.ahmed@email.com", "1234567890")
+    #Test customer entering reference number
+    print(f"Reference Number Entered: {customer.enter_reference_number()}")
+    #Test customer paying cancellation fee
+    print(f"Cancellation Fee Paid: {customer.pay_cancellation_fee()}")
+    #Test customer getting cancellation invoice
+    print(customer.get_cancellation_invoice())
+
+    #Create a Reservation
+    reservation = Reservation("Reservation 234", "Customer 34", "Reference 12345", "Active")
+    #Test checking booking reference
+    print(f"Booking Reference Valid: {reservation.check_booking_reference()}")
+    #Test updating reservation status to "Canceled"
+    print(f"Reservation Status Updated: {reservation.update_status()}")
+    print(f"Reservation Status: {reservation.status}")
+
+    #Create a Payment
+    payment = Payment("Payment 4", 100.0, "Pending")
+    #Test processing the payment
+    print(f"Payment Processed: {payment.process_payment()}")
+    #Test verifying the payment status
+    print(f"Payment Verified: {payment.verify_payment()}")
+
+    #Create a CancellationInvoice
+    cancellation_invoice = CancellationInvoice("Invoice 34", "Reservation 234", 100.0)
+    #Test generating the invoice
+    print(cancellation_invoice.generate_invoice())
+    #Test sending confirmation to the customer
+    print(f"Confirmation Sent to Customer: {cancellation_invoice.send_confirmation_to_customer()}")
+
+#Run the test
+test_classes()
